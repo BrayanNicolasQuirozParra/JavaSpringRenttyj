@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master-template :: head">
+    <title th:text="${titlePage}"></title>
+</head>
+<body>
+
+<nav th:replace="master-template :: navbar"></nav>
+
+<div class="container-fluid mt-5 ml-3">
+    <h1 class="mb-5" th:text="${title}"></h1>
+    <table id="admin-table" class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Foto de perfil</th>
+            <th scope="col">Fecha de unión</th>
+            <th scope="col">Último inicio de sesión</th>
+            <th scope="col">Inicio de sesión anterior</th>
+            <th scope="col">Fecha de actualización</th>
+            <th scope="col">Activo</th>
+            <th scope="col">No bloqueado</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.role.name}"></td>
+            <td>
+                <img style="width: 5em; height: 5em;" th:src="${user.profileImageUrl}" alt="">
+            </td>
+            <td th:text="${user.joinLocalDateTime}"></td>
+            <td th:text="${user.lastLogin}"></td>
+            <td th:text="${user.lastLoginDisplay}"></td>
+            <td th:text="${user.updateDate}"></td>
+            <td th:text="${user.isActive}"></td>
+            <td th:text="${user.isNotLocked}"></td>
+            <td>
+                <a th:href="@{delete-user/{id}(id=${user.id})}"><i class="fa fa-trash mr-2 text-danger"></i></a>
+                <a th:href="@{update-user/{id}(id=${user.id})}"><i class="fa fa-edit"></i></a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<footer th:replace="master-template :: footer"></footer>
+
+</body>
+</html>

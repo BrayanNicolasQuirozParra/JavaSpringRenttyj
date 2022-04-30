@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master-template :: head">
+    <title th:text="${titlePage}"></title>
+</head>
+<body>
+<nav th:replace="master-template :: navbar"></nav>
+
+<div id="content" class="container mt-5">
+    <h1 class="mb-5" th:text="${title}"></h1>
+    <form th:object="${productObject}" th:action="@{/save-product}" method="post">
+        <div class="form-group">
+            <label for="productName">Nombre del producto</label>
+            <input type="text" required class="form-control" th:field="*{productName}" id="productName" name="productName" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label for="specifications">Especificaciones</label>
+            <input type="text" required class="form-control" th:field="*{specifications}" id="specifications" name="specifications" placeholder="Enter specifications">
+        </div>
+        <div class="form-group">
+            <label for="price">Precio</label>
+            <input type="text" required class="form-control" th:field="*{price}" id="price" name="price" placeholder="Enter price">
+        </div>
+        <div class="form-group">
+            <label for="stock">Inventario</label>
+            <input type="text" required class="form-control" th:field="*{stock}" id="stock" name="stock" placeholder="Enter stock">
+        </div>
+        <div class="form-group">
+            <label for="category">Categoría</label>
+            <select class="form-control" id="category" th:field="*{category}">
+                <option th:value="0" th:text="--Seleccione--"></option>
+                <option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<footer th:replace="master-template :: footer"></footer>
+</body>
+</html>

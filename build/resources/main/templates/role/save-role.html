@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master-template :: head">
+    <title th:text="${titlePage}"></title>
+</head>
+<body>
+<nav th:replace="master-template :: navbar"></nav>
+
+<div id="content" class="container mt-5">
+    <h1 class="mb-5" th:text="${title}"></h1>
+    <form th:object="${roleObject}" th:action="@{/save-role}" method="post">
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" required class="form-control" th:field="*{name}" id="name" name="name" placeholder="Enter name">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<footer th:replace="master-template :: footer"></footer>
+</body>
+</html>

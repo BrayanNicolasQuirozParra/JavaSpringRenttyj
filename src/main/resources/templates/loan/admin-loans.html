@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master-template :: head">
+    <title th:text="${titlePage}"></title>
+</head>
+<body>
+
+<nav th:replace="master-template :: navbar"></nav>
+
+<div class="container-fluid mt-5 p-4">
+    <h1 class="mb-5" th:text="${title}"></h1>
+    <table id="admin-table" class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Días</th>
+            <th scope="col">Días Máximos</th>
+            <th scope="col">Fecha de préstamo</th>
+            <th scope="col">Fecha de entrega</th>
+            <th scope="col">Préstamos diarios</th>
+            <th scope="col">Multa</th>
+            <th scope="col">Precio final</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Fecha de Actualización</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="loan: ${loans}">
+            <td th:text="${loan.id}"></td>
+            <td th:text="${loan.timeDays}"></td>
+            <td th:text="${loan.maxDays}"></td>
+            <td th:text="${loan.loanDate}"></td>
+            <td th:text="${loan.deliveryDate}"></td>
+            <td th:text="${loan.dailyLoans}"></td>
+            <td th:text="${loan.penaltyFee}"></td>
+            <td th:text="${loan.amount}"></td>
+            <td th:text="${loan.state}"></td>
+            <td th:text="${loan.product.productName}"></td>
+            <td th:text="${loan.client.firstName}"></td>
+            <td th:text="${loan.updateDate}"></td>
+            <td>
+                <a th:href="@{delete-loan/{id}(id=${loan.id})}"><i class="fa fa-trash mr-2 text-danger"></i></a>
+                <a th:href="@{update-loan/{id}(id=${loan.id})}"><i class="fa fa-edit"></i></a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<footer th:replace="master-template :: footer"></footer>
+
+</body>
+</html>

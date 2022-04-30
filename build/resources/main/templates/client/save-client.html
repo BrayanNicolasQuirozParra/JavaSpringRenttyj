@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master-template :: head">
+    <title th:text="${titlePage}"></title>
+</head>
+<body>
+<nav th:replace="master-template :: navbar"></nav>
+
+<div id="content" class="container mt-5">
+    <h1 class="mb-5" th:text="${title}"></h1>
+    <form th:object="${clientObject}" th:action="@{/save-client}" method="post">
+        <div class="form-group">
+            <label for="firstName">Nombres</label>
+            <input type="text" required class="form-control" th:field="*{firstName}" id="firstName" name="firstName" placeholder="Enter names">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Apellidos</label>
+            <input type="text" required class="form-control" th:field="*{lastName}" id="lastName" name="lastName" placeholder="Enter lastnames">
+        </div>
+        <div class="form-group">
+            <label for="contactNumber">Número de contacto</label>
+            <input type="text" required class="form-control" th:field="*{contactNumber}" id="contactNumber" name="contactNumber" placeholder="Enter contact number">
+        </div>
+        <div class="form-group">
+            <label for="address">Dirección</label>
+            <input type="text" required class="form-control" th:field="*{address}" id="address" name="address" placeholder="Enter address">
+        </div>
+        <div class="form-group">
+            <label for="location">Localización</label>
+            <input type="text" required class="form-control" th:field="*{location}" id="location" name="location" placeholder="Enter location">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+
+<footer th:replace="master-template :: footer"></footer>
+</body>
+</html>
